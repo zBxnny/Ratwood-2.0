@@ -53,9 +53,6 @@
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
 		C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)
 
-	if(H.devotion)
-		H.devotion._grant_all_patron_miracles_direct(H)
-
 	var/miracle_menu_path = text2path("/obj/effect/proc_holder/spell/self/learnmiracle")
 	if(miracle_menu_path)
 		if(!H.mind.has_spell(miracle_menu_path))
