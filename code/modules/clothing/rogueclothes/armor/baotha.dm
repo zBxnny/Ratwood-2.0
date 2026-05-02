@@ -14,7 +14,7 @@
 	. = ..()
 	// ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 	AddComponent(/datum/component/cursed_item, TRAIT_DEPRAVED, "ARMOR")
-	AddComponent(/datum/component/item_equipped_movement_rustle, null)
+	// AddComponent(/datum/component/item_equipped_movement_rustle, null)
 
 // /obj/item/clothing/suit/roguetown/armor/plate/half/baotha/dropped(mob/living/carbon/human/user)
 // 	. = ..()
@@ -35,13 +35,9 @@
 
 /obj/item/clothing/under/roguetown/platelegs/baotha/Initialize(mapload)
 	. = ..()
+	// ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 	AddComponent(/datum/component/cursed_item, TRAIT_DEPRAVED, "ARMOR")
 	// AddComponent(/datum/component/item_equipped_movement_rustle, null)
-
-// /obj/item/clothing/under/roguetown/platelegs/baotha/Initialize(mapload)
-// 	. = ..()
-// 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-// 	AddComponent(/datum/component/cursed_item, TRAIT_DEPRAVED, "ARMOR")
 
 // /obj/item/clothing/under/roguetown/platelegs/baotha/dropped(mob/living/carbon/human/user)
 // 	. = ..()
