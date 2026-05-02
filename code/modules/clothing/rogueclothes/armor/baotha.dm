@@ -128,7 +128,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/anklets/baotha
 	neck = /obj/item/clothing/neck/roguetown/gorget/boatha
 	backr = /obj/item/storage/backpack/rogue/satchel/short
-	r_hand = /obj/item/rogueweapon/whip/spiderwhip/baotha
+	beltr = /obj/item/rogueweapon/whip/spiderwhip/baotha
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending/lesser)
 
 
