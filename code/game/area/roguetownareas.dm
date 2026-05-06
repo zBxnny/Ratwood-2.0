@@ -86,7 +86,23 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/indoors/vampire_manor
 	name = "Vampire Manor"
+	first_time_text = "The House of Blood"
 	droning_sound = 'sound/music/area/manor2.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	deathsight_message = "an ancient dread-manor, home of a great and terrible evil. Red eyes look back at you, warning you not to pry further."
+
+/area/rogue/outdoors/woods/vampire_lair
+	warden_area = FALSE
+	ambush_times = null
+	ambush_mobs = null
+	threat_region = ""
+	droning_sound = 'sound/music/area/gloom.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	deathsight_message = "the foot of an ancient dread-manor, before the home of a great and terrible evil."
+
+
 
 /area/rogue/indoors/ravoxarena
 	name = "Ravox's Arena"
