@@ -18,19 +18,19 @@
 	var/list/stealablezones = list("chest", "neck", "groin", "r_hand", "l_hand")
 	// Pickpocketting checks
 	if(get_dist(thief, victim) > steal_radius)
-		to_chat(user, span_warning("[victim] is too far away."))
+		to_chat(thief, span_warning("[victim] is too far away."))
 		return
 	if(thief.get_active_held_item())
-		to_chat(user, span_warning("I can't pickpocket while my hand is full!"))
+		to_chat(thief, span_warning("I can't pickpocket while my hand is full!"))
 		return
 	if(victim.cmode)
-		to_chat(user, "<span class='warning'>[victim] is alert. I can't pickpocket them like this.</span>")
+		to_chat(thief, "<span class='warning'>[victim] is alert. I can't pickpocket them like this.</span>")
 		return
-	if(!(user.zone_selected in stealablezones))
-		to_chat(user, span_warning("What am I going to steal from there?"))
+	if(!(thief.zone_selected in stealablezones))
+		to_chat(thief, span_warning("What am I going to steal from there?"))
 		return
 
-	var/thiefskill = user.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
+	var/thiefskill = thief.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
 	var/stealroll = roll("[thiefskill]d6")
 	var/targetperception = (victim.STAPER)
 	var/chance_add = stealmods["chance_add"]
@@ -42,25 +42,25 @@
 	var/list/stealpos = list()
 	var/list/mobsbehind = list()
 	var/exp_to_gain = thief.STAINT
-	to_chat(user, span_notice("I try to steal from [victim]..."))	
-	if(!do_after(user, 5, target = victim, progress = 0))
+	to_chat(thief, span_notice("I try to steal from [victim]..."))	
+	if(!do_after(thief, 5, target = victim, progress = 0))
 		return
 	// Pickpocketting checks after the channel in case something changed
 	if(get_dist(thief, victim) > steal_radius)
-		to_chat(user, span_warning("[victim] is too far away."))
+		to_chat(thief, span_warning("[victim] is too far away."))
 		return
 	if(thief.get_active_held_item())
-		to_chat(user, span_warning("I can't pickpocket while my hand is full!"))
+		to_chat(thief, span_warning("I can't pickpocket while my hand is full!"))
 		return
 	if(victim.cmode)
-		to_chat(user, "<span class='warning'>[victim] is alert. I can't pickpocket them like this.</span>")
+		to_chat(thief, "<span class='warning'>[victim] is alert. I can't pickpocket them like this.</span>")
 		return
-	if(!(user.zone_selected in stealablezones))
-		to_chat(user, span_warning("What am I going to steal from there?"))
+	if(!(thief.zone_selected in stealablezones))
+		to_chat(thief, span_warning("What am I going to steal from there?"))
 		return
 	if(stealroll > effective_targetperception)
-		mobsbehind |= cone(victim, list(turn(victim.dir, 180)), list(user))
-		if(mobsbehind.Find(user) || victim.IsUnconscious() || victim.eyesclosed || victim.eye_blind || victim.eye_blurry || !(victim.mobility_flags & MOBILITY_STAND))
+		mobsbehind |= cone(victim, list(turn(victim.dir, 180)), list(thief))
+		if(mobsbehind.Find(thief) || victim.IsUnconscious() || victim.eyesclosed || victim.eye_blind || victim.eye_blurry || !(victim.mobility_flags & MOBILITY_STAND))
 			switch(thief.zone_selected)
 				if("chest")
 					if (victim.get_item_by_slot(SLOT_BACK_L))
@@ -81,8 +81,8 @@
 			if(length(stealpos) > 0)
 				var/obj/item/picked = pick(stealpos)
 				victim.dropItemToGround(picked)
-				user.put_in_active_hand(picked)
-				to_chat(user, span_green("I stole [picked]!"))
+				thief.put_in_active_hand(picked)
+				to_chat(thief, span_green("I stole [picked]!"))
 				victim.log_message("has had \the [picked] stolen by [key_name(thief)]", LOG_ATTACK, color="white")
 				thief.log_message("has stolen \the [picked] from [key_name(victim)]", LOG_ATTACK, color="white")
 				if(victim.client && victim.stat != DEAD)
@@ -90,13 +90,13 @@
 					record_featured_stat(FEATURED_STATS_THIEVES, thief)
 					record_featured_stat(FEATURED_STATS_CRIMINALS, thief)
 					GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]++
-				if(user.has_flaw(/datum/charflaw/addiction/kleptomaniac))
-					user.sate_addiction(/datum/charflaw/addiction/kleptomaniac)
+				if(thief.has_flaw(/datum/charflaw/addiction/kleptomaniac))
+					thief.sate_addiction(/datum/charflaw/addiction/kleptomaniac)
 			else
 				exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion
-				to_chat(user, span_warning("I didn't find anything there. Perhaps I should look elsewhere."))
+				to_chat(thief, span_warning("I didn't find anything there. Perhaps I should look elsewhere."))
 		else
-			to_chat(user, "<span class='warning'>They can see me!")
+			to_chat(thief, "<span class='warning'>They can see me!")
 	if(stealroll <= 5)
 		victim.log_message("has had an attempted pickpocket by [key_name(thief)]", LOG_ATTACK, color="white")
 		thief.log_message("has attempted to pickpocket [key_name(victim)]", LOG_ATTACK, color="white")
@@ -105,10 +105,10 @@
 	if(stealroll < effective_targetperception)
 		victim.log_message("has had an attempted pickpocket by [key_name(thief)]", LOG_ATTACK, color="white")
 		thief.log_message("has attempted to pickpocket [key_name(victim)]", LOG_ATTACK, color="white")
-		to_chat(user, span_danger("I failed to pick the pocket!"))
+		to_chat(thief, span_danger("I failed to pick the pocket!"))
 		to_chat(victim, span_danger("Someone tried pickpocketing me!"))
 		exp_to_gain /= 5 // these can be removed or changed on reviewer's discretion
 	// If we're pickpocketing someone else, and that person is conscious, grant XP
-	if(user != victim && victim.stat == CONSCIOUS)
-		user.mind.add_sleep_experience(/datum/skill/misc/stealing, exp_to_gain, FALSE)
-	user.changeNext_move(clickcd)
+	if(thief != victim && victim.stat == CONSCIOUS)
+		thief.mind.add_sleep_experience(/datum/skill/misc/stealing, exp_to_gain, FALSE)
+	thief.changeNext_move(clickcd)
