@@ -1348,10 +1348,6 @@ var/global/list/NOC_SECRET_MIRACLES = list(
 		open_learn_ui(H)
 		return
 
-		if(!H.mind)
-			open_learn_ui(H)
-			return
-
 		var/secret_id = "[href_list["buynoc"]]"
 		var/list/found = null
 
