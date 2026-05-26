@@ -18,8 +18,8 @@
 	invocations = list("Noc blinds thee of thy sins!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	associated_skill = /datum/skill/magic/holy
-	devotion_cost = 15
-	recharge_time = 15 SECONDS
+	devotion_cost = 20
+	recharge_time = 30 SECONDS
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	miracle = TRUE
 	cost = 3
@@ -44,7 +44,7 @@
 	chargedrain = 5
 	chargetime = 5
 	clothes_req = FALSE
-	recharge_time = 30 SECONDS
+	recharge_time = 45 SECONDS // Up from 30
 	range = 3
 	warnie = "sydwarning"
 	movement_interrupt = FALSE

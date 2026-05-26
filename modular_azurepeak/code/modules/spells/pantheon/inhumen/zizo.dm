@@ -13,7 +13,7 @@
 	invocation_type = "whisper"
 	releasedrain = 30
 	chargedrain = 0
-	chargetime = 15
+	chargetime = 10 //Lowering from 15
 	recharge_time = 10 SECONDS
 	hide_charge_effect = TRUE // Left handed magick babe
 

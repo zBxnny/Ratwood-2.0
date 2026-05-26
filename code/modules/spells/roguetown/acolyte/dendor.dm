@@ -466,7 +466,7 @@
 	overlay_state = "blesscrop"
 	releasedrain = 30
 	recharge_time = 30 SECONDS
-	chargetime = 1 SECONDS
+	chargetime = 5 SECONDS //Up from 1
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	max_targets = 0
 	cast_without_targets = TRUE
@@ -474,7 +474,7 @@
 	associated_skill = /datum/skill/magic/holy
 	invocations = list("Treefather light the way.")
 	invocation_type = "whisper" //can be none, whisper, emote and shout
-	devotion_cost = 30
+	devotion_cost = 40 //Up from 30
 
 /obj/effect/proc_holder/spell/targeted/conjure_glowshroom/cast(list/targets, mob/user = usr)
 	. = ..()

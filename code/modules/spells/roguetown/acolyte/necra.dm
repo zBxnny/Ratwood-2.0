@@ -35,10 +35,10 @@
 /obj/effect/proc_holder/spell/targeted/churn
 	name = "Churn Undead"
 	desc = "Stuns and explodes undead."
-	range = 8//We return it, up from 4...
+	range = 6 //Lowering it from 8 to 6.
 	overlay_state = "necra_ult"//Temp.
 	releasedrain = 30
-	chargetime = 6 SECONDS//Up from 2.
+	chargetime = 8 SECONDS//Up from 6.
 	recharge_time = 2 MINUTES//Up from 60.
 	max_targets = 2//... in exchange for max targets...
 	cast_without_targets = TRUE

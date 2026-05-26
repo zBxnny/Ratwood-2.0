@@ -40,7 +40,7 @@
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 15
-	recharge_time = 10 SECONDS
+	recharge_time = 30 SECONDS //Up from 10
 
 /obj/projectile/magic/unholy_grasp
 	name = "viceral organ net"
